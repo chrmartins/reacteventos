@@ -1,7 +1,6 @@
 import React from 'react'
 import './login.css'
 
-// um comentario qualquer
 function Login() {
 	return (
 		<div className="login-content d-flex align-iems-center">
@@ -29,5 +28,6 @@ function Login() {
 				</div>
 			</form>
 		</div>
-	)edit
+	)
+}
 export default Login
