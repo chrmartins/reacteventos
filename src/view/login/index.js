@@ -29,5 +29,5 @@ function Login() {
 				</div>
 			</form>
 		</div>
-	)edit
+	)
 export default Login
