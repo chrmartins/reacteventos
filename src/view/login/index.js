@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './login.css'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+
 import firebase from '../../config/firebase'
 import 'firebase/auth'
+
+import { useSelector, useDispatch } from 'react-redux'
 
 function Login () {
 
@@ -10,25 +13,32 @@ function Login () {
   const [senha, setSenha] = useState()
   const [msgTipo, setMsgtipo] = useState()
 
+  const dispatch = useDispatch()
+
   function logar(){
 
     firebase.auth().signInWithEmailAndPassword(email, senha)
       .then(resultado => {
         setMsgtipo('sucesso')
+        setTimeout(()=>{
+          dispatch({type: 'LOG_IN', usuarioEmail: email})
+        },2000)
       }).catch(erro => {
         setMsgtipo('erro')
       })
-    
+
   }
 
+
   return (
-    <div className='login-content d-flex align-iems-center'>
+    <div className='login-content d-flex align-items-center'>
+
+      {useSelector(state => state.usuarioLogado) > 0 ? <Redirect to='/' /> : null}
 
       <form className='form-signin mx-auto'>
 
         <div className='text-center mb-4'>
-          <img className='mb-4' src='/docs/4.4/assets/brand/bootstrap-solid.svg' 
-            alt='' width='72' height='72' />
+          <i class="far fa-smile-wink text-white fa-5x"></i>
           <h1 className='h3 mb-3 font-weight-normal text-white font-weight-bold'>Login</h1>
         </div>
 
@@ -50,7 +60,7 @@ function Login () {
         </div>
 
         <div className='opcoes-login mt-5 text-center'>
-          <a href='#' className='mx-2'>Recuperar Senha</a>
+          <Link to='usuariorecuperarsenha' className='mx-2'>Recuperar Senha</Link>
           <span className='text-white'>&#9733;</span>
           <Link to='novousuario' className='mx-2'>Quero Cadastrar</Link>
         </div>
