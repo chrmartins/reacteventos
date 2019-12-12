@@ -25,7 +25,7 @@ function Navbar() {
 						useSelector(state => state.usuarioLogado) > 0 ? //se usuário está logado mostre:
 							<>
 								<li className="nav-item">
-									<Link className="nav-link" to=''>Publicar Evento</Link>
+									<Link className="nav-link" to='eventocadastro'>Publicar Evento</Link>
 								</li>
 								<li className="nav-item">
 									<Link className="nav-link" to=''>Meus Eventos</Link>
