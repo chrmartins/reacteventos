@@ -22,7 +22,7 @@ function Login () {
         setMsgtipo('sucesso')
         setTimeout(()=>{
           dispatch({type: 'LOG_IN', usuarioEmail: email})
-        },2000)
+        },1000)
       }).catch(erro => {
         setMsgtipo('erro')
       })
